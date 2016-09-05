@@ -2,6 +2,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"study/testa2"
 	"time"
@@ -278,6 +279,48 @@ func main() {
 
 	fmt.Println(getSum(101))
 	fmt.Println(testa2.Testa(8, 9))
+
+	//测试接口
+	var ip Phone = new(IPhone)
+	ip.num()
+	ip = new(Xiaomi)
+	ip.num()
+
+	//测试错误
+	int2, err2 := sqrt(1)
+	fmt.Printf("调用sqrt函数，如果不大于0则返回错误，当前传递的值是%d，返回结果为%d和%s\n", 1, int2, err2)
+}
+
+//定义一个返回错误的函数
+func sqrt(n int) (int, error) {
+	if n > 0 {
+		return n - 1, errors.New("错误，传递的数值必须大于0")
+	} else {
+		return 0, errors.New("错误，传递的数值必须大于0")
+	}
+}
+
+//定义一个接口Phone
+type Phone interface {
+	num()
+}
+
+//定义一个结构
+type IPhone struct {
+}
+
+//定义一个方法
+func (iphone IPhone) num() {
+	fmt.Println("这个一个定义的方法")
+}
+
+//定义第二个结构
+type Xiaomi struct {
+}
+
+//定义第二个方法
+func (xm Xiaomi) num() {
+	fmt.Println("这是第二个定义的方法")
 }
 
 //测试结构体（类似java的自定义对象）
