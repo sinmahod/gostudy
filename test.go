@@ -4,7 +4,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	"study/testa2"
+	"gostudy/testa2"
 	"time"
 	"unsafe"
 )
@@ -289,6 +289,13 @@ func main() {
 	//测试错误
 	int2, err2 := sqrt(1)
 	fmt.Printf("调用sqrt函数，如果不大于0则返回错误，当前传递的值是%d，返回结果为%d和%s\n", 1, int2, err2)
+
+	//测试错误使用
+	if det1, err3 := testa2.Detail(1, 2); err3 == "" {
+		fmt.Println("正确：", det1)
+	} else {
+		fmt.Println("错误：", err3)
+	}
 }
 
 //定义一个返回错误的函数
